@@ -15,12 +15,7 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    @Autowired
-    ServicesEnterprise servicesEnterprise;
-    @Autowired
-    ServicesEmployee servicesEmployee;
-
-    @GetMapping("/")
+   @GetMapping("/")
     public String index(Model model, @AuthenticationPrincipal OidcUser principal) {
         return "index";
     }
