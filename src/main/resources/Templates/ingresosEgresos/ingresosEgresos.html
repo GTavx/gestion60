@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+<body>
+
+<main layout:fragment="contenido">
+    <div>
+
+        <!--Título encabezado-->
+        <div class="card-header">
+            <h2><p><strong>Movimientos Empresa</strong></p></h2>
+        </div>
+
+        <table class="table">
+            <div align="right">
+
+                <!-- Formulario para Nuevo Movimiento-->
+                <form th:object="${enterprise}" th:action="@{/enterprises/{id}/movements (id = ${enterprise.id})}"
+                      method="get">
+                    <input type="hidden" name="id"/>
+                    <button type="submit" class="btn btn-primary">Nuevo Movimiento <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+
+            </div>
+
+            <p></p>
+
+            <!-- Columnas de la Tabla -->
+            <thead class="table-dark">
+            <tr>
+                <th>Concepto</th>
+                <th>Monto</th>
+                <th>Fecha creación</th>
+                <th>Fecha actualización</th>
+                <th>Empleado</th>
+            </tr>
+            </thead>
+
+            <!-- filas de la tabla-->
+            <tbody class="table-group-divider">
+            <!-- Dibuja la filas por empleados -->
+            <tr th:each="transaction : ${transaction}">
+                <!-- Dibuja columnas por cada campo del Objeto-->
+                <td th:text="${transaction.concept}"></td>
+                <td th:text="${transaction.amount}"></td>
+                <td th:text="${transaction.createdAt}"></td>
+                <td th:text="${transaction.updateAt}"></td>
+                <td th:text="${transaction.user.name}"></td>
+
+            <tr>
+                <td>suma</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

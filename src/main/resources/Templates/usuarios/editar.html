@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index">
+<body>
+
+<main layout:fragment="contenido">
+<!-- Formulario para guardar nuevo usuario -->
+<!--<form  th:object="${employee}"  th:action="@{/users/updateuserx}" method="patch" enctype="multipart/form-data">
+    <form  th:object="${employee}"  th:action="@{/users/{id}(id=${employee.id})}" th:method="patch" enctype="multipart/form-data">-->
+    <form  th:object="${employee}"  th:action="@{/users}" th:method="patch" enctype="multipart/form-data">
+    <div class="form-group"  >
+        <h2>Actualizar Usuario</h2>
+        <input type="hidden" name="id" th:value="${employee.id}" />
+      <div>
+        <label for="name">Nombre</label>
+          <input th:field="*{name}" th:value="${employee.name}" autocomplete="off" autofocus  id="name" name="name"
+               placeholder="Escribe el nombre del usuario" type="text"
+               class="form-control">
+      </div>
+      <div>
+        <label for="email">Correo</label>
+        <input th:field="*{email}" th:value="${employee.email}" autocomplete="off" autofocus  id="email" name="email"
+               placeholder="Escribe el email" type="text" class="form-control">
+      </div>
+
+        <div>
+            <label for="role">Rol</label>
+            <input th:field="*{role}" th:value="${employee.role}" autocomplete="off" autofocus  id="role" name="role"
+                   placeholder="Escribe el rol" type="text" class="form-control" list="dlrole">
+        </div>
+      <!-- El campo Telefono-->
+        <div>
+            <label for="phone">Teléfono</label>
+            <input th:field="*{profile.phone}" th:value="${profile.phone}" autocomplete="off" autofocus  id="phone" name="phone"
+                   placeholder="Escribe el Telefono" type="text" class="form-control">
+           <input th:field="*{enterprise}" type="hidden" id="enterprise" name="enterprise" />
+            <input th:field="*{profile}" type="hidden" id="profile" name="profile" />
+            <!-- <input th:field="*{enterprise}" type="text" id="idEnter" name="idEnter" hidden />
+           <input th:field="*{profile}" type="text" id="idProf" name="idProf" hidden />
+            <input type="hidden" name="name" th:value="${employee.name}" />
+             <input type="hidden" name="email" th:value="${employee.email}" />
+             <input type="hidden" id="idProfile" name="idProfile" th:value="${employee.profile.id}" />
+            input type="hidden" th:field="*{enterprise.id}" id="idEnter" name="idEnter" />-->
+
+        </div>
+        <div>
+            <label for="image">Imagen</label>
+            <input id="image" name="image"
+                   placeholder="seleccione su imagen" type="file"
+                   class="form-control"  th:value="${profile.image}">
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Actualizar</button>
+</form>
+    <datalist id="dlrole"><option value="Admin"></option><option value="Operario"></option></datalist>
+</main>
+</body>
+
+</html>
